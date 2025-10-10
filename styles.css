@@ -42,7 +42,7 @@ body {
 }
 
 .logo img {
-    height: calc(var(--header-height) - 4vh);
+    height: 100%;
     width: auto;
     display: block;
     object-fit: contain;
