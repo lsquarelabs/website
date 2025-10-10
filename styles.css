@@ -6,8 +6,8 @@
 }
 
 :root {
-    --color-black: #0a0a0a;
-    --color-white: #ffffff;
+    --color-black: #080808;
+    --color-white: #f8f8f8;
     --square-size: 25vw;
     --square-border-width: 0.2vw;
     --logo-width: 12vw;
@@ -21,7 +21,7 @@ body {
     color: var(--color-white);
     font-family: 'Fira Code', monospace;
     overflow: hidden;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="0.5"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35z"/></svg>') 0 0, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23f8f8f8" stroke="%23080808" stroke-width="0.5"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35z"/></svg>') 0 0, auto;
     min-height: 100vh;
     width: 100vw;
 }
@@ -70,7 +70,7 @@ body {
     position: absolute;
     width: var(--square-size);
     height: var(--square-size);
-    border: var(--square-border-width) solid rgba(255, 255, 255, 0.3);
+    border: var(--square-border-width) solid rgba(248, 248, 248, 0.3);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -84,7 +84,7 @@ body {
     position: absolute;
     width: var(--square-size);
     height: var(--square-size);
-    border: var(--square-border-width) solid rgba(255, 255, 255, 0.15);
+    border: var(--square-border-width) solid rgba(248, 248, 248, 0.15);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -94,17 +94,17 @@ body {
 }
 
 .square-trail:nth-child(2) {
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(248, 248, 248, 0.12);
     transition-delay: 0.05s;
 }
 
 .square-trail:nth-child(3) {
-    border-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(248, 248, 248, 0.09);
     transition-delay: 0.1s;
 }
 
 .square-trail:nth-child(4) {
-    border-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(248, 248, 248, 0.06);
     transition-delay: 0.15s;
 }
 
