@@ -175,3 +175,21 @@ body {
         font-size: clamp(1rem, 5vh, 2rem);
     }
 }
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 2vh 3vw;
+    text-align: center;
+    z-index: 100;
+}
+
+.footer p {
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.7;
+}
