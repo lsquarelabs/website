@@ -1,0 +1,177 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-black: #0a0a0a;
+    --color-white: #ffffff;
+    --square-size: 25vw;
+    --square-border-width: 0.2vw;
+    --logo-width: 12vw;
+    --header-height: 15vh;
+    --spacing-x: 3vw;
+    --spacing-y: 3vh;
+}
+
+body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: 'Fira Code', monospace;
+    overflow: hidden;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="0.5"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35z"/></svg>') 0 0, auto;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* Logo Styles */
+.logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--spacing-x);
+    padding-right: var(--spacing-x);
+    z-index: 100;
+}
+
+.logo img {
+    height: calc(var(--header-height) - 4vh);
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    color: var(--color-white);
+}
+
+/* Center Container */
+.center-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Moving Square */
+.moving-square {
+    position: absolute;
+    width: var(--square-size);
+    height: var(--square-size);
+    border: var(--square-border-width) solid rgba(255, 255, 255, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s ease-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Trail Effect Squares */
+.square-trail {
+    position: absolute;
+    width: var(--square-size);
+    height: var(--square-size);
+    border: var(--square-border-width) solid rgba(255, 255, 255, 0.15);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+    transition: transform 0.6s ease-out, opacity 0.8s ease-out;
+}
+
+.square-trail:nth-child(2) {
+    border-color: rgba(255, 255, 255, 0.12);
+    transition-delay: 0.05s;
+}
+
+.square-trail:nth-child(3) {
+    border-color: rgba(255, 255, 255, 0.09);
+    transition-delay: 0.1s;
+}
+
+.square-trail:nth-child(4) {
+    border-color: rgba(255, 255, 255, 0.06);
+    transition-delay: 0.15s;
+}
+
+/* Coming Soon Text */
+.coming-soon {
+    position: relative;
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    z-index: 2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Tablet Responsive Design */
+@media (max-width: 1024px) {
+    :root {
+        --square-size: 30vw;
+        --logo-width: 15vw;
+        --square-border-width: 0.25vw;
+    }
+
+    .coming-soon {
+        letter-spacing: 0.4em;
+    }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --square-size: 45vw;
+        --logo-width: 25vw;
+        --square-border-width: 0.3vw;
+        --header-height: 12vh;
+    }
+
+    .coming-soon {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        letter-spacing: 0.3em;
+    }
+}
+
+/* Small Mobile Responsive Design */
+@media (max-width: 480px) {
+    :root {
+        --square-size: 55vw;
+        --logo-width: 30vw;
+        --square-border-width: 0.4vw;
+        --header-height: 10vh;
+    }
+
+    .coming-soon {
+        font-size: clamp(1.25rem, 7vw, 2rem);
+        letter-spacing: 0.2em;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    :root {
+        --header-height: 20vh;
+        --square-size: 30vh;
+        --logo-width: 20vw;
+    }
+
+    .coming-soon {
+        font-size: clamp(1rem, 5vh, 2rem);
+    }
+}
