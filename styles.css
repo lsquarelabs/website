@@ -356,10 +356,12 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     background-color: rgba(248, 248, 248, 0.02);
+    pointer-events: none;
 }
 
 .carousel-img.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .carousel-btn {
@@ -421,6 +423,19 @@ body {
 
 .carousel-indicator:hover {
     background-color: rgba(255, 215, 0, 0.5);
+}
+
+.carousel-caption {
+    margin-top: 12px;
+    text-align: center;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    color: rgba(248, 248, 248, 0.75);
+    line-height: 1.5;
+    min-height: 1.5em;
+}
+
+.carousel-caption.hidden {
+    display: none;
 }
 
 .coming-soon-text {
