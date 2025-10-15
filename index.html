@@ -12,15 +12,140 @@
 <body>
     <header class="logo">
         <img src="assets/logofinal.png" alt="L Square Labs">
+        <h1 class="header-title" id="locomotion-title">LOCOMOTION</h1>
         <span class="logo-text">l square labs</span>
     </header>
 
-    <main class="center-container">
-        <div class="square-trail"></div>
-        <div class="square-trail"></div>
-        <div class="square-trail"></div>
-        <div class="moving-square"></div>
-        <h1 class="coming-soon">Coming Soon</h1>
+    <main class="main-content">
+        <!-- Hardware Projects -->
+        <section class="hardware-section">
+            <h2 class="section-title">Our <span class="gold-text">Walkers</span></h2>
+
+            <!-- Project Navigation -->
+            <div class="project-nav">
+                <a href="#hopper" class="project-nav-card">
+                    <h3>Hopper</h3>
+                    <p>Single Leg Mechanism</p>
+                </a>
+                <a href="#rumi" class="project-nav-card">
+                    <h3>Rumi</h3>
+                    <p>Indigenous Quadruped</p>
+                </a>
+                <a href="#lite3" class="project-nav-card">
+                    <h3>Lite3</h3>
+                    <p>RL Testing Platform</p>
+                </a>
+            </div>
+
+            <!-- Single Leg / Hopper -->
+            <div class="project-container" id="hopper">
+                <div class="project-header">
+                    <h3 class="hardware-title">Hopper</h3>
+                    <p class="hardware-subtitle">Single Leg Mechanism - A part of Rumi</p>
+                </div>
+                <div class="project-description">
+                    <p>Our leg mechanism was designed using <a href="https://cadquery.readthedocs.io/en/latest/" target="_blank" rel="noopener">CadQuery</a>, a powerful open-source CAD framework that enables parametric 3D modeling through Python scripting.</p>
+                    <p>We are currently 3D printing our prototype and are using <a href="https://emanual.robotis.com/docs/en/dxl/mx/mx-64-2/" target="_blank" rel="noopener">Dynamixel MX-64</a> motors for actuation.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="carousel" data-carousel="hopper-photos">
+                            <button class="carousel-btn carousel-btn-left" aria-label="Previous image">‹</button>
+                            <div class="carousel-container">
+                                <img src="assets/leg/images/front_1.webp" alt="Hopper Front View" class="carousel-img active">
+                                <img src="assets/leg/images/side_2.webp" alt="Hopper Side View" class="carousel-img">
+                                <img src="assets/leg/images/sit_1.webp" alt="Hopper Sitting Position" class="carousel-img">
+                                <img src="assets/leg/images/quad_leg_parts.webp" alt="Quadruped Leg Parts" class="carousel-img">
+                            </div>
+                            <button class="carousel-btn carousel-btn-right" aria-label="Next image">›</button>
+                            <div class="carousel-indicators"></div>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="media-placeholder">
+                            <p>Videos coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rumi -->
+            <div class="project-container" id="rumi">
+                <div class="project-header">
+                    <h3 class="hardware-title">Rumi</h3>
+                    <p class="hardware-subtitle">Indigenous Quadruped Prototype</p>
+                </div>
+                <div class="project-description">
+                    <p>Our indigenous quadruped prototype, still under development. Rumi represents our commitment to building capable legged robots using open-source tools and locally sourced components.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="media-placeholder">
+                            <p>Photos coming soon...</p>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="media-placeholder">
+                            <p>Videos coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lite3 -->
+            <div class="project-container" id="lite3">
+                <div class="project-header">
+                    <h3 class="hardware-title">DeepRobotics Lite3</h3>
+                    <p class="hardware-subtitle">RL Policy Testing Platform</p>
+                </div>
+                <div class="project-description">
+                    <p>The robot on which we test our reinforcement learning policies. The Lite3 serves as our validation platform for testing algorithms trained in simulation.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="media-placeholder">
+                            <p>Photos coming soon...</p>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="media-placeholder">
+                            <p>Videos coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source Tools -->
+        <section class="tools-section">
+            <h2 class="section-title">Open Source Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 class="tool-name">CadQuery</h3>
+                    <p class="tool-description">Parametric 3D modeling through Python scripting</p>
+                    <a href="https://cadquery.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="tool-link">Documentation →</a>
+                </div>
+                <div class="tool-card">
+                    <h3 class="tool-name">MuJoCo Playground</h3>
+                    <p class="tool-description">Physics simulation and RL policy training</p>
+                    <a href="https://playground.mujoco.org/" target="_blank" rel="noopener" class="tool-link">Playground →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">Timeline</h2>
+            <div class="timeline-placeholder">
+                <p>Timeline updates coming soon...</p>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">

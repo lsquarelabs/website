@@ -20,7 +20,6 @@ body {
     background-color: var(--color-black);
     color: var(--color-white);
     font-family: 'Fira Code', monospace;
-    overflow: hidden;
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23f8f8f8" stroke="%23080808" stroke-width="0.5"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35z"/></svg>') 0 0, auto;
     min-height: 100vh;
     width: 100vw;
@@ -39,6 +38,8 @@ body {
     padding-left: var(--spacing-x);
     padding-right: var(--spacing-x);
     z-index: 100;
+    background-color: var(--color-black);
+    border-bottom: 1px solid rgba(248, 248, 248, 0.1);
 }
 
 .logo img {
@@ -46,6 +47,96 @@ body {
     width: auto;
     display: block;
     object-fit: contain;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-white);
+    display: flex;
+    animation: title-breathe 7.2s ease-in-out infinite;
+}
+
+@keyframes title-breathe {
+    0%, 100% {
+        transform: translateX(-50%) scale(1.0);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.15);
+    }
+}
+
+.header-title .letter {
+    display: inline-block;
+}
+
+/* Static state when scrolled */
+.header-title.static {
+    animation: none !important;
+    transform: translateX(-50%) scale(1) !important;
+}
+
+.header-title.static .letter {
+    animation: none !important;
+    transform: none !important;
+    color: var(--color-white) !important;
+    box-shadow: none !important;
+}
+
+/* L and N move together - start at -6px, go to +6px */
+.header-title .walk-group-1 {
+    animation: walk-group-1 1.2s ease-in-out infinite;
+}
+
+@keyframes walk-group-1 {
+    0%, 100% {
+        transform: translateY(-6px) scale(1.1);
+        color: var(--color-white);
+        box-shadow: inset 0 0 0 0 transparent;
+    }
+    50% {
+        transform: translateY(6px) scale(0.9);
+        color: gold;
+        box-shadow: inset 0 -0.3em 0 -0.25em gold;
+    }
+}
+
+/* Both O's move together - start at +6px, go to -6px */
+.header-title .walk-group-2 {
+    animation: walk-group-2 1.2s ease-in-out infinite;
+}
+
+@keyframes walk-group-2 {
+    0%, 100% {
+        transform: translateY(6px) scale(0.9);
+        color: gold;
+        box-shadow: inset 0 -0.3em 0 -0.25em gold;
+    }
+    50% {
+        transform: translateY(-6px) scale(1.1);
+        color: var(--color-white);
+        box-shadow: inset 0 0 0 0 transparent;
+    }
+}
+
+/* Middle letters (C, O, M, O, T, I) - rock motion */
+/* Move down (+2px) when any leg touches, move up (-2px) when both legs are mid-air */
+.header-title .walk-group-3 {
+    animation: walk-group-3 1.2s ease-in-out infinite;
+}
+
+@keyframes walk-group-3 {
+    0%, 50%, 100% {
+        transform: translateY(2px);
+    }
+    25%, 75% {
+        transform: translateY(-2px);
+    }
 }
 
 .logo-text {
@@ -56,123 +147,903 @@ body {
     color: var(--color-white);
 }
 
-/* Center Container */
-.center-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+/* Main Content */
+.main-content {
+    margin-top: var(--header-height);
+    padding: var(--spacing-y) var(--spacing-x);
+    min-height: calc(100vh - var(--header-height));
+    width: 100vw;
+    overflow-y: auto;
 }
 
-/* Moving Square */
-.moving-square {
-    position: absolute;
-    width: var(--square-size);
-    height: var(--square-size);
-    border: var(--square-border-width) solid rgba(248, 248, 248, 0.3);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.5s ease-out;
-    z-index: 1;
-    pointer-events: none;
+/* Section Styles */
+.hardware-section,
+.tools-section,
+.timeline-section {
+    width: 90%;
+    margin: 0 auto 6vh auto;
+    padding: 4vh 0;
 }
 
-/* Trail Effect Squares */
-.square-trail {
-    position: absolute;
-    width: var(--square-size);
-    height: var(--square-size);
-    border: var(--square-border-width) solid rgba(248, 248, 248, 0.15);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
-    transition: transform 0.6s ease-out, opacity 0.8s ease-out;
-}
-
-.square-trail:nth-child(2) {
-    border-color: rgba(248, 248, 248, 0.12);
-    transition-delay: 0.05s;
-}
-
-.square-trail:nth-child(3) {
-    border-color: rgba(248, 248, 248, 0.09);
-    transition-delay: 0.1s;
-}
-
-.square-trail:nth-child(4) {
-    border-color: rgba(248, 248, 248, 0.06);
-    transition-delay: 0.15s;
-}
-
-/* Coming Soon Text */
-.coming-soon {
-    position: relative;
-    font-size: clamp(2rem, 4vw, 4.5rem);
-    font-weight: 700;
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5em;
-    z-index: 2;
+    letter-spacing: 0.2em;
+    margin-bottom: 4vh;
+    color: var(--color-white);
     text-align: center;
-    white-space: nowrap;
 }
 
-/* Tablet Responsive Design */
-@media (max-width: 1024px) {
-    :root {
-        --square-size: 30vw;
-        --logo-width: 15vw;
-        --square-border-width: 0.25vw;
+.gold-text {
+    color: gold;
+}
+
+/* Project Navigation */
+.project-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3vw;
+    margin-bottom: 8vh;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-nav-card {
+    background-color: rgba(248, 248, 248, 0.03);
+    border: 2px solid rgba(248, 248, 248, 0.15);
+    border-radius: 12px;
+    padding: 4vh 3vw;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-nav-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-nav-card:hover::before {
+    left: 100%;
+}
+
+.project-nav-card:hover {
+    background-color: rgba(248, 248, 248, 0.08);
+    border-color: gold;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.project-nav-card h3 {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    color: gold;
+    margin-bottom: 1vh;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.project-nav-card p {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.7);
+    font-weight: 300;
+}
+
+/* Project Container */
+.project-container {
+    margin-bottom: 8vh;
+    padding-bottom: 6vh;
+    border-bottom: 1px solid rgba(248, 248, 248, 0.1);
+}
+
+.project-container:last-of-type {
+    border-bottom: none;
+}
+
+.project-header {
+    margin-bottom: 2vh;
+}
+
+.hardware-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: gold;
+    margin-bottom: 1vh;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.hardware-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-weight: 300;
+    color: rgba(248, 248, 248, 0.7);
+    margin-bottom: 2vh;
+    font-style: italic;
+}
+
+.project-description {
+    margin-bottom: 4vh;
+    line-height: 1.6;
+}
+
+.project-description p {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.85);
+    margin-bottom: 1.5vh;
+}
+
+.project-description a {
+    color: gold;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.project-description a:hover {
+    border-bottom-color: gold;
+}
+
+/* Project Media Layout */
+.project-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    margin-top: 3vh;
+}
+
+.media-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.media-title {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
+    color: var(--color-white);
+    margin-bottom: 2vh;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.media-placeholder {
+    background-color: rgba(248, 248, 248, 0.03);
+    border: 1px dashed rgba(248, 248, 248, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.media-placeholder p {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.4);
+    font-style: italic;
+}
+
+/* Carousel Gallery */
+.carousel {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(248, 248, 248, 0.15);
+}
+
+.carousel-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-color: rgba(248, 248, 248, 0.02);
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(248, 248, 248, 0.1);
+    color: var(--color-white);
+    border: 1px solid rgba(248, 248, 248, 0.2);
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+    border-color: gold;
+    color: gold;
+}
+
+.carousel-btn-left {
+    left: 10px;
+}
+
+.carousel-btn-right {
+    right: 10px;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(248, 248, 248, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.carousel-indicator.active {
+    background-color: gold;
+    border-color: gold;
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background-color: rgba(255, 215, 0, 0.5);
+}
+
+.coming-soon-text {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.5);
+    text-align: center;
+    padding: 4vh 0;
+    font-style: italic;
+}
+
+/* Tools Section */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3vh 3vw;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tool-card {
+    background-color: rgba(248, 248, 248, 0.03);
+    border: 1px solid rgba(248, 248, 248, 0.1);
+    border-radius: 8px;
+    padding: 3vh 2vw;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.tool-card:hover {
+    background-color: rgba(248, 248, 248, 0.05);
+    border-color: gold;
+    transform: translateY(-5px);
+}
+
+.tool-name {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 1.5vh;
+    letter-spacing: 0.1em;
+}
+
+.tool-description {
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    color: rgba(248, 248, 248, 0.7);
+    margin-bottom: 2vh;
+    line-height: 1.5;
+}
+
+.tool-link {
+    display: inline-block;
+    color: gold;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.tool-link:hover {
+    transform: translateX(5px);
+}
+
+/* Timeline Section */
+.timeline-placeholder {
+    background-color: rgba(248, 248, 248, 0.03);
+    border: 1px solid rgba(248, 248, 248, 0.1);
+    border-radius: 8px;
+    padding: 6vh 3vw;
+    text-align: center;
+}
+
+.timeline-placeholder p {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: rgba(248, 248, 248, 0.5);
+    font-style: italic;
+}
+
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .hardware-section {
+        width: 85%;
+        max-width: 1800px;
     }
 
-    .coming-soon {
-        letter-spacing: 0.4em;
+    .carousel-container {
+        height: 500px;
+    }
+
+    .media-placeholder {
+        min-height: 500px;
     }
 }
 
-/* Mobile Responsive Design */
-@media (max-width: 768px) {
-    :root {
-        --square-size: 45vw;
-        --logo-width: 25vw;
-        --square-border-width: 0.3vw;
-        --header-height: 12vh;
+/* Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .carousel-container {
+        height: 450px;
     }
 
-    .coming-soon {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-        letter-spacing: 0.3em;
+    .media-placeholder {
+        min-height: 450px;
     }
 }
 
-/* Small Mobile Responsive Design */
-@media (max-width: 480px) {
-    :root {
-        --square-size: 55vw;
-        --logo-width: 30vw;
-        --square-border-width: 0.4vw;
-        --header-height: 10vh;
+/* Laptop/Small Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .hardware-section {
+        width: 92%;
     }
 
-    .coming-soon {
-        font-size: clamp(1.25rem, 7vw, 2rem);
+    .carousel-container {
+        height: 380px;
+    }
+
+    .media-placeholder {
+        min-height: 380px;
+    }
+
+    .project-description p {
+        font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --header-height: 13vh;
+        --spacing-x: 4vw;
+    }
+
+    .hardware-section {
+        width: 94%;
+    }
+
+    .project-container {
+        margin-bottom: 6vh;
+        padding-bottom: 5vh;
+    }
+
+    .project-media {
+        gap: 3vw;
+    }
+
+    .carousel-container {
+        height: 320px;
+    }
+
+    .media-placeholder {
+        min-height: 320px;
+    }
+
+    .carousel-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.6rem;
+    }
+
+    .media-title {
+        font-size: clamp(1rem, 1.8vw, 1.2rem);
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3vh 4vw;
+    }
+
+    .section-title {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    }
+}
+
+/* 2-element header layout for small screens */
+@media (max-width: 599px) {
+    .logo-text {
+        display: none;
+    }
+
+    .logo {
+        justify-content: space-between;
+    }
+
+    .header-title {
+        position: static;
+        transform: none;
+        font-size: clamp(1rem, 4vw, 1.8rem);
         letter-spacing: 0.2em;
     }
 }
 
-/* Landscape Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
+/* Tablet Portrait (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
     :root {
-        --header-height: 20vh;
-        --square-size: 30vh;
-        --logo-width: 20vw;
+        --header-height: 14vh;
+        --spacing-x: 5vw;
+        --spacing-y: 3vh;
     }
 
-    .coming-soon {
-        font-size: clamp(1rem, 5vh, 2rem);
+    .hardware-section {
+        width: 94%;
+    }
+
+    .project-nav {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+        margin-bottom: 6vh;
+    }
+
+    .project-nav-card {
+        padding: 3vh 5vw;
+    }
+
+    .project-container {
+        margin-bottom: 7vh;
+        padding-bottom: 4vh;
+    }
+
+    .project-media {
+        grid-template-columns: 1fr;
+        gap: 4vh;
+    }
+
+    .carousel-container {
+        height: 350px;
+    }
+
+    .media-placeholder {
+        min-height: 280px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .carousel-btn-left {
+        left: 8px;
+    }
+
+    .carousel-btn-right {
+        right: 8px;
+    }
+
+    .hardware-title {
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 3vh;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+    }
+
+    .tool-card {
+        padding: 3vh 5vw;
+    }
+}
+
+/* Mobile Landscape (480px - 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+    :root {
+        --header-height: 13vh;
+        --spacing-x: 5vw;
+    }
+
+    .hardware-section {
+        width: 95%;
+    }
+
+    .project-nav {
+        grid-template-columns: 1fr;
+        gap: 2.5vh;
+        margin-bottom: 5vh;
+    }
+
+    .project-nav-card {
+        padding: 2.5vh 5vw;
+    }
+
+    .project-container {
+        margin-bottom: 6vh;
+        padding-bottom: 4vh;
+    }
+
+    .project-header {
+        margin-bottom: 2vh;
+    }
+
+    .project-description {
+        margin-bottom: 3vh;
+    }
+
+    .project-media {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+    }
+
+    .carousel-container {
+        height: 280px;
+    }
+
+    .media-placeholder {
+        min-height: 240px;
+    }
+
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.4rem;
+    }
+
+    .carousel-btn-left {
+        left: 6px;
+    }
+
+    .carousel-btn-right {
+        right: 6px;
+    }
+
+    .carousel-indicators {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .hardware-title {
+        font-size: clamp(1.3rem, 5vw, 1.6rem);
+        letter-spacing: 0.12em;
+    }
+
+    .hardware-subtitle {
+        font-size: clamp(0.85rem, 2vw, 1rem);
+    }
+
+    .media-title {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        margin-bottom: 1.5vh;
+    }
+
+    .section-title {
+        font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+        letter-spacing: 0.18em;
+    }
+
+    .tool-card {
+        padding: 2.5vh 5vw;
+    }
+
+    .timeline-placeholder {
+        padding: 4vh 5vw;
+    }
+}
+
+/* Small Mobile Portrait (320px - 479px) */
+@media (max-width: 479px) {
+    :root {
+        --header-height: 12vh;
+        --spacing-x: 6vw;
+        --spacing-y: 2.5vh;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .hardware-section,
+    .tools-section,
+    .timeline-section {
+        width: 96%;
+        padding: 3vh 0;
+    }
+
+    .project-container {
+        margin-bottom: 5vh;
+        padding-bottom: 3vh;
+    }
+
+    .project-header {
+        margin-bottom: 1.5vh;
+    }
+
+    .project-description {
+        margin-bottom: 2.5vh;
+    }
+
+    .project-description p {
+        font-size: clamp(0.8rem, 3vw, 0.9rem);
+        line-height: 1.5;
+        margin-bottom: 1.2vh;
+    }
+
+    .project-media {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+        margin-top: 2vh;
+    }
+
+    .carousel-container {
+        height: 240px;
+    }
+
+    .media-placeholder {
+        min-height: 200px;
+    }
+
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-btn-left {
+        left: 5px;
+    }
+
+    .carousel-btn-right {
+        right: 5px;
+    }
+
+    .carousel-indicators {
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .carousel-indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .hardware-title {
+        font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+        letter-spacing: 0.1em;
+        margin-bottom: 0.8vh;
+    }
+
+    .hardware-subtitle {
+        font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+        margin-bottom: 1.5vh;
+    }
+
+    .media-title {
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        margin-bottom: 1.2vh;
+        letter-spacing: 0.08em;
+    }
+
+    .section-title {
+        font-size: clamp(1.3rem, 6vw, 1.6rem);
+        letter-spacing: 0.15em;
+        margin-bottom: 2.5vh;
+    }
+
+    .tool-card {
+        padding: 2.5vh 6vw;
+    }
+
+    .tool-name {
+        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+        margin-bottom: 1.2vh;
+    }
+
+    .tool-description {
+        font-size: clamp(0.75rem, 2.2vw, 0.85rem);
+        margin-bottom: 1.5vh;
+    }
+
+    .tool-link {
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+    }
+
+    .timeline-placeholder {
+        padding: 3vh 6vw;
+    }
+
+    .footer p {
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
+    }
+}
+
+/* Extra Small Mobile (max 359px) */
+@media (max-width: 359px) {
+    :root {
+        --header-height: 11vh;
+        --spacing-x: 5vw;
+    }
+
+    .hardware-section,
+    .tools-section,
+    .timeline-section {
+        width: 98%;
+    }
+
+    .carousel-container {
+        height: 200px;
+    }
+
+    .media-placeholder {
+        min-height: 180px;
+    }
+
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+
+    .hardware-title {
+        font-size: clamp(1.1rem, 6vw, 1.3rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.2rem, 7vw, 1.4rem);
+    }
+
+    .project-description p {
+        font-size: clamp(0.75rem, 3.5vw, 0.85rem);
+    }
+}
+
+/* Landscape Mobile (short height) */
+@media (max-height: 600px) and (orientation: landscape) {
+    :root {
+        --header-height: 18vh;
+        --spacing-y: 2vh;
+    }
+
+    .project-container {
+        margin-bottom: 4vh;
+        padding-bottom: 3vh;
+    }
+
+    .project-media {
+        grid-template-columns: 1fr 1fr;
+        gap: 3vw;
+    }
+
+    .carousel-container {
+        height: 50vh;
+    }
+
+    .media-placeholder {
+        min-height: 50vh;
+    }
+
+    .section-title {
+        font-size: clamp(1.2rem, 4vh, 1.8rem);
+        margin-bottom: 2vh;
+    }
+
+    .hardware-title {
+        font-size: clamp(1rem, 3.5vh, 1.5rem);
+    }
+
+    .project-description {
+        margin-bottom: 2vh;
+    }
+
+    .project-description p {
+        font-size: clamp(0.8rem, 2.5vh, 0.95rem);
+        margin-bottom: 1vh;
+    }
+
+    .media-title {
+        font-size: clamp(0.9rem, 2.8vh, 1.1rem);
+        margin-bottom: 1vh;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .tool-card {
+        padding: 2vh 3vw;
+    }
+
+    .timeline-placeholder {
+        padding: 3vh 4vw;
+    }
+}
+
+/* Very Short Landscape (max 400px height) */
+@media (max-height: 400px) and (orientation: landscape) {
+    :root {
+        --header-height: 22vh;
+    }
+
+    .hardware-section,
+    .tools-section,
+    .timeline-section {
+        padding: 2vh 0;
+    }
+
+    .project-container {
+        margin-bottom: 3vh;
+        padding-bottom: 2vh;
+    }
+
+    .carousel-container {
+        height: 45vh;
+    }
+
+    .media-placeholder {
+        min-height: 45vh;
+    }
+
+    .section-title {
+        font-size: clamp(1rem, 4.5vh, 1.4rem);
+        margin-bottom: 1.5vh;
+    }
+
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1.1rem;
     }
 }
 
