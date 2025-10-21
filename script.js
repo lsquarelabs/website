@@ -123,14 +123,16 @@
 
         let currentIndex = 0;
 
-        // Create indicators
-        slides.forEach((_, index) => {
-            const indicator = document.createElement('div');
-            indicator.className = 'carousel-indicator';
-            if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
-            indicatorsContainer.appendChild(indicator);
-        });
+        // Create indicators only if there's more than one slide
+        if (slides.length > 1) {
+            slides.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+        }
 
         const indicators = carousel.querySelectorAll('.carousel-indicator');
 
@@ -174,15 +176,21 @@
             updateCarousel();
         }
 
-        // Event listeners
-        leftBtn.addEventListener('click', prevSlide);
-        rightBtn.addEventListener('click', nextSlide);
+        // Event listeners (only if buttons exist)
+        if (leftBtn) {
+            leftBtn.addEventListener('click', prevSlide);
+        }
+        if (rightBtn) {
+            rightBtn.addEventListener('click', nextSlide);
+        }
 
-        // Keyboard navigation
-        carousel.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
+        // Keyboard navigation (only for multi-slide carousels)
+        if (slides.length > 1) {
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            });
+        }
 
         // Optional: Auto-play (commented out by default)
         // setInterval(nextSlide, 5000);
@@ -220,6 +228,38 @@
             }
         });
     });
+
+})();
+
+/**
+ * Timeline scroll animation trigger
+ */
+(function() {
+    'use strict';
+
+    const timeline = document.querySelector('.timeline');
+
+    if (timeline) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the timeline is visible
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add class to trigger animations
+                    timeline.classList.add('timeline-visible');
+                    // Unobserve after animation is triggered (run only once)
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(timeline);
+    }
 
 })();
 
