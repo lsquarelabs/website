@@ -1,0 +1,737 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --color-black: #080808;
+    --color-white: #f8f8f8;
+    --square-size: 25vw;
+    --square-border-width: 0.2vw;
+    --logo-width: 12vw;
+    --header-height: 15vh;
+    --spacing-x: 3vw;
+    --spacing-y: 3vh;
+}
+
+body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: 'Fira Code', monospace;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23f8f8f8" stroke="%23080808" stroke-width="0.5"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35z"/></svg>') 0 0, auto;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* Logo Styles */
+.logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--spacing-x);
+    padding-right: var(--spacing-x);
+    z-index: 100;
+    background-color: var(--color-black);
+    border-bottom: 1px solid rgba(248, 248, 248, 0.1);
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo-link:hover {
+    opacity: 0.7;
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-white);
+    display: flex;
+}
+
+.logo-text {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    color: var(--color-white);
+}
+
+/* Main Content */
+.main-content {
+    margin-top: var(--header-height);
+    padding: 0 var(--spacing-x);
+    padding-top: 0;
+    min-height: calc(100vh - var(--header-height));
+    width: 100vw;
+    overflow-y: auto;
+    background-image:
+        linear-gradient(rgba(248, 248, 248, 0.05) 1px, transparent 3px),
+        linear-gradient(90deg, rgba(248, 248, 248, 0.05) 1px, transparent 3px);
+    background-size: 25px 25px;
+    background-position: 0 0, 0 0;
+}
+
+/* Section Styles */
+.hardware-section {
+    width: 90%;
+    margin: 0 auto 6vh auto;
+    padding: 0;
+    padding-top: 0;
+}
+
+
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4vh;
+    color: var(--color-white);
+    text-align: center;
+}
+
+.gold-text {
+    color: gold;
+}
+
+/* What We Work On Section */
+.what-we-work-on-section {
+    margin-bottom: 8vh;
+    padding: 4vh 0;
+}
+
+.what-we-work-on-section .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: gold;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 3vh;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.work-on-text {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.work-on-text p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: rgba(248, 248, 248, 0.85);
+    margin-bottom: 0;
+    line-height: 2.3;
+    text-align: justify;
+}
+
+.work-on-text .highlight {
+    color: gold;
+    font-weight: 500;
+}
+
+/* Carousel Gallery */
+.carousel {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(248, 248, 248, 0.15);
+}
+
+.carousel-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-color: rgba(248, 248, 248, 0.02);
+    pointer-events: none;
+}
+
+.carousel-img.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(248, 248, 248, 0.1);
+    color: var(--color-white);
+    border: 1px solid rgba(248, 248, 248, 0.2);
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+    border-color: gold;
+    color: gold;
+}
+
+.carousel-btn-left {
+    left: 10px;
+}
+
+.carousel-btn-right {
+    right: 10px;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(248, 248, 248, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.carousel-indicator.active {
+    background-color: gold;
+    border-color: gold;
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background-color: rgba(255, 215, 0, 0.5);
+}
+
+.carousel-caption {
+    margin-top: 12px;
+    text-align: center;
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    color: rgba(248, 248, 248, 0.75);
+    line-height: 1.5;
+    min-height: 1.5em;
+}
+
+.carousel-caption.hidden {
+    display: none;
+}
+
+.coming-soon-text {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.5);
+    text-align: center;
+    padding: 4vh 0;
+    font-style: italic;
+}
+
+/* Demonstrations Section */
+.demonstrations-section {
+    width: 90%;
+    margin: 0 auto 6vh auto;
+    padding: 4vh 0;
+}
+
+.demonstrations-intro {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: rgba(248, 248, 248, 0.85);
+    text-align: center;
+    margin-bottom: 4vh;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Demo Grid - 3 columns on desktop, responsive */
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vh 3vw;
+    margin-top: 4vh;
+}
+
+/* 2 columns on medium screens */
+@media (max-width: 1279px) {
+    .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Simplified Demo Cards */
+.demo-card {
+    background: rgba(248, 248, 248, 0.03);
+    border: 1px solid rgba(248, 248, 248, 0.15);
+    border-radius: 10px;
+    padding: 3vh 2.5vw;
+    transition: all 0.3s ease;
+}
+
+.demo-card:hover {
+    background: rgba(248, 248, 248, 0.06);
+    border-color: gold;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+}
+
+.demo-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: gold;
+    margin-bottom: 1vh;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.demo-description {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(248, 248, 248, 0.85);
+    line-height: 1.6;
+    margin-bottom: 2.5vh;
+}
+
+.demo-media {
+    width: 100%;
+}
+
+.demo-card .carousel-container {
+    height: 350px;
+}
+
+/* Responsive: Single column on tablets and below */
+@media (max-width: 1023px) {
+    .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 4vh;
+    }
+
+    .demo-card .carousel-container {
+        height: 380px;
+    }
+}
+
+@media (max-width: 599px) {
+    .demo-card .carousel-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 479px) {
+    .demo-card {
+        padding: 2.5vh 4vw;
+    }
+
+    .demo-card .carousel-container {
+        height: 240px;
+    }
+}
+
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .hardware-section {
+        width: 85%;
+        max-width: 1800px;
+    }
+
+    .carousel-container {
+        height: 500px;
+    }
+
+}
+
+/* Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .carousel-container {
+        height: 450px;
+    }
+
+}
+
+/* Laptop/Small Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .hardware-section {
+        width: 92%;
+    }
+
+    .carousel-container {
+        height: 380px;
+    }
+
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --header-height: 13vh;
+        --spacing-x: 4vw;
+    }
+
+    .hardware-section {
+        width: 94%;
+    }
+
+
+    .carousel-container {
+        height: 320px;
+    }
+
+    .carousel-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    }
+}
+
+/* 2-element header layout for small screens */
+@media (max-width: 599px) {
+    .logo-text {
+        display: none;
+    }
+
+    .logo {
+        justify-content: space-between;
+    }
+
+    .header-title {
+        position: static;
+        transform: none;
+        font-size: clamp(1rem, 4vw, 1.8rem);
+        letter-spacing: 0.2em;
+    }
+}
+
+/* Tablet Portrait (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+    :root {
+        --header-height: 14vh;
+        --spacing-x: 5vw;
+        --spacing-y: 3vh;
+    }
+
+    .hardware-section {
+        width: 94%;
+    }
+
+
+    .carousel-container {
+        height: 350px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .carousel-btn-left {
+        left: 8px;
+    }
+
+    .carousel-btn-right {
+        right: 8px;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: 3vh;
+    }
+}
+
+/* Mobile Landscape (480px - 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+    :root {
+        --header-height: 13vh;
+        --spacing-x: 5vw;
+    }
+
+    .hardware-section {
+        width: 95%;
+    }
+
+
+    .carousel-container {
+        height: 280px;
+    }
+
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.4rem;
+    }
+
+    .carousel-btn-left {
+        left: 6px;
+    }
+
+    .carousel-btn-right {
+        right: 6px;
+    }
+
+    .carousel-indicators {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .section-title {
+        font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+        letter-spacing: 0.18em;
+    }
+
+}
+
+/* Small Mobile Portrait (320px - 479px) */
+@media (max-width: 479px) {
+    :root {
+        --header-height: 12vh;
+        --spacing-x: 6vw;
+        --spacing-y: 2.5vh;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .hardware-section {
+        width: 96%;
+        padding: 3vh 0;
+    }
+
+
+    .carousel-container {
+        height: 240px;
+    }
+
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-btn-left {
+        left: 5px;
+    }
+
+    .carousel-btn-right {
+        right: 5px;
+    }
+
+    .carousel-indicators {
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .carousel-indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .section-title {
+        font-size: clamp(1.3rem, 6vw, 1.6rem);
+        letter-spacing: 0.15em;
+        margin-bottom: 2.5vh;
+    }
+
+    .footer p {
+        font-size: clamp(0.7rem, 2vw, 0.85rem);
+    }
+}
+
+/* Extra Small Mobile (max 359px) */
+@media (max-width: 359px) {
+    :root {
+        --header-height: 11vh;
+        --spacing-x: 5vw;
+    }
+
+    .hardware-section {
+        width: 98%;
+    }
+
+    .carousel-container {
+        height: 200px;
+    }
+
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.2rem, 7vw, 1.4rem);
+    }
+}
+
+/* Landscape Mobile (short height) */
+@media (max-height: 600px) and (orientation: landscape) {
+    :root {
+        --header-height: 18vh;
+        --spacing-y: 2vh;
+    }
+
+    .carousel-container {
+        height: 50vh;
+    }
+
+    .section-title {
+        font-size: clamp(1.2rem, 4vh, 1.8rem);
+        margin-bottom: 2vh;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Very Short Landscape (max 400px height) */
+@media (max-height: 400px) and (orientation: landscape) {
+    :root {
+        --header-height: 22vh;
+    }
+
+    .hardware-section {
+        padding: 2vh 0;
+    }
+
+    .carousel-container {
+        height: 45vh;
+    }
+
+    .section-title {
+        font-size: clamp(1rem, 4.5vh, 1.4rem);
+        margin-bottom: 1.5vh;
+    }
+
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 2vh 3vw;
+    text-align: center;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.footer p {
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.7;
+}
+
+.social-links {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a {
+    color: var(--color-white);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    color: gold;
+    transform: translateY(-2px);
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 767px) {
+    .social-links {
+        gap: 4vw;
+    }
+    
+    .social-links svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 479px) {
+    .footer {
+        gap: 0.8vh;
+    }
+    
+    .social-links {
+        gap: 5vw;
+    }
+    
+    .social-links svg {
+        width: 16px;
+        height: 16px;
+    }
+}
