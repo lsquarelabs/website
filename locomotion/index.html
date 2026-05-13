@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logofinal.png">
+    <title>locomotion | lsquarelabs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="logo">
+        <a href="https://www.lsquarelabs.com" class="logo-link" target="_blank" rel="noopener">
+            <img src="assets/logofinal.png" alt="L Square Labs">
+        </a>
+        <h1 class="header-title" id="locomotion-title">LOCOMOTION</h1>
+        <a href="https://www.lsquarelabs.com" class="logo-link" target="_blank" rel="noopener">
+            <span class="logo-text">l square labs</span>
+        </a>
+    </header>
+
+    <main class="main-content">
+        <!-- Hardware Projects -->
+        <section class="hardware-section">
+            <!-- Two-column layout for intro and navigation -->
+            <div class="walkers-intro-section">
+                <div class="walkers-text">
+                    <h3 class="walkers-heading">Here's what <span class="white-text">we do!</span></h3>
+                    <p>Our locomotion research explores the intersection of <span class="highlight">mechanical design</span>, <span class="highlight">control theory</span>, and <span class="highlight">machine learning</span>. We're building legged robots from the ground up—designing custom mechanisms, developing simulation environments, and training <span class="highlight">reinforcement learning policies</span> that transfer from simulation to reality.</p>
+                    <p>Each project represents a different aspect of this journey: from single-leg prototypes that validate our kinematics, to fully <span class="highlight">indigenous quadrupeds</span> built with <span class="highlight">open-source tools</span>, to commercial platforms that let us test our <span class="highlight">AI controllers</span> in the real world.</p>
+                </div>
+                <div class="walkers-nav-wrapper">
+                    <h2 class="section-title">Our <span class="gold-text">Walkers</span></h2>
+                    <!-- Project Navigation -->
+                    <div class="project-nav">
+                        <a href="#flea" class="project-nav-card">
+                            <h3>Flea</h3>
+                            <p>Single Leg Mechanism</p>
+                        </a>
+                        <a href="#rumi" class="project-nav-card">
+                            <h3>Rumi</h3>
+                            <p>Indigenous Quadruped</p>
+                        </a>
+                        <a href="#lite3" class="project-nav-card">
+                            <h3>Lite3</h3>
+                            <p>RL Testing Platform</p>
+                        </a>
+                        <a href="/sim/" class="project-nav-card sim-card" target="_blank" rel="noopener">
+                            <h3>Live Sim<span class="sim-badge">NEW</span></h3>
+                            <p>MuJoCo + RL policy in your browser</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Leg / Flea -->
+            <div class="project-container" id="flea">
+                <div class="project-header">
+                    <h3 class="hardware-title">Flea</h3>
+                    <p class="hardware-subtitle">Single Leg Mechanism - A part of Rumi</p>
+                </div>
+                <div class="project-description">
+                    <p>Our leg mechanism was designed using <a href="https://cadquery.readthedocs.io/en/latest/" target="_blank" rel="noopener">CadQuery</a>, a powerful open-source CAD framework that enables parametric 3D modeling through Python scripting.</p>
+                    <p>We are currently 3D printing our prototype and are using <a href="https://emanual.robotis.com/docs/en/dxl/mx/mx-64-2/" target="_blank" rel="noopener">Dynamixel MX-64</a> motors for actuation.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="carousel" data-carousel="flea-photos">
+                            <button class="carousel-btn carousel-btn-left" aria-label="Previous image">‹</button>
+                            <div class="carousel-container">
+                                <img src="assets/leg/images/front_1.webp" alt="Front view of the Flea leg assembly" class="carousel-img active" data-caption="Front view of the Flea single-leg prototype.">
+                                <img src="assets/leg/images/side_1.webp" alt="Side profile of Flea linkage" class="carousel-img" data-caption="Side profile highlighting the linkage geometry.">
+                                <img src="assets/leg/images/side_2.webp" alt="Alternate side profile of Flea" class="carousel-img" data-caption="Alternate angle showcasing actuator placement.">
+                                <img src="assets/leg/images/sit_1.webp" alt="Flea seated pose" class="carousel-img" data-caption="Flea demonstrating full range in a seated pose.">
+                                <img src="assets/leg/images/quad_leg_parts.webp" alt="Exploded view of Flea components" class="carousel-img" data-caption="Exploded layout of the machined and printed components.">
+                            </div>
+                            <button class="carousel-btn carousel-btn-right" aria-label="Next image">›</button>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="carousel" data-carousel="flea-gifs">
+                            <button class="carousel-btn carousel-btn-left" aria-label="Previous clip">‹</button>
+                            <div class="carousel-container">
+                                <img src="assets/leg/gifs/inv_kine_final.gif" alt="Inverse kinematics validation for Flea" class="carousel-img active" loading="lazy" data-caption="Inverse kinematics validation for the Flea leg.">
+                                <img src="assets/leg/gifs/sim2realalone.gif" alt="Sim-to-real test for single leg balancing" class="carousel-img" loading="lazy" data-caption="Sim-to-real transfer test: single leg balancing routine.">
+                                <img src="assets/leg/gifs/sim2realboth.gif" alt="Dual-leg sim-to-real gait experiment" class="carousel-img" loading="lazy" data-caption="Dual-leg gait experiment comparing simulation and reality.">
+                            </div>
+                            <button class="carousel-btn carousel-btn-right" aria-label="Next clip">›</button>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rumi -->
+            <div class="project-container" id="rumi">
+                <div class="project-header">
+                    <h3 class="hardware-title">Rumi</h3>
+                    <p class="hardware-subtitle">Indigenous Quadruped Prototype</p>
+                </div>
+                <div class="project-description">
+                    <p>Our indigenous quadruped prototype, still under development. Rumi represents our commitment to building capable legged robots using open-source tools and locally sourced components.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="carousel" data-carousel="rumi-photos">
+                            <div class="carousel-container">
+                                <img src="assets/rumi/images/rumi.webp" alt="Rumi indigenous quadruped robot" class="carousel-img active" data-caption="Rumi indigenous quadruped prototype.">
+                            </div>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="carousel" data-carousel="rumi-gifs">
+                            <button class="carousel-btn carousel-btn-left" aria-label="Previous clip">‹</button>
+                            <div class="carousel-container">
+                                <img src="assets/rumi/gifs/RumiFlatTerrainJoystick_rollout_x_inc.gif" alt="Rumi flat terrain joystick control - forward motion" class="carousel-img active" loading="lazy" data-caption="Rumi quadruped demonstrating joystick-controlled forward locomotion on flat terrain.">
+                                <img src="assets/rumi/gifs/RumiFlatTerrainJoystick_rollout_yaw_1_0.gif" alt="Rumi flat terrain joystick control - yaw rotation" class="carousel-img" loading="lazy" data-caption="Rumi quadruped executing yaw rotation using joystick commands.">
+                                <img src="assets/rumi/gifs/mx_quad_jump.gif" alt="Rumi quadruped jumping maneuver" class="carousel-img" loading="lazy" data-caption="Rumi performing a dynamic jumping maneuver.">
+                                <img src="assets/rumi/gifs/mx_quad_standup.gif" alt="Rumi quadruped standing up from prone position" class="carousel-img" loading="lazy" data-caption="Rumi autonomously recovering from a prone position.">
+                                <img src="assets/rumi/gifs/mx_quad_twist.gif" alt="Rumi quadruped twist movement" class="carousel-img" loading="lazy" data-caption="Rumi demonstrating agile twisting motion.">
+                            </div>
+                            <button class="carousel-btn carousel-btn-right" aria-label="Next clip">›</button>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lite3 -->
+            <div class="project-container" id="lite3">
+                <div class="project-header">
+                    <h3 class="hardware-title">DeepRobotics Lite3</h3>
+                    <p class="hardware-subtitle">RL Policy Testing Platform</p>
+                </div>
+                <div class="project-description">
+                    <p>The robot on which we test our reinforcement learning policies. The Lite3 serves as our validation platform for testing algorithms trained in simulation.</p>
+                </div>
+                <div class="project-media">
+                    <div class="media-section photos">
+                        <h4 class="media-title">Photos</h4>
+                        <div class="carousel" data-carousel="lite3-photos">
+                            <div class="carousel-container">
+                                <img src="assets/lite3/images/lite_04.webp" alt="DeepRobotics Lite3 quadruped robot" class="carousel-img active" data-caption="DeepRobotics Lite3 quadruped platform for RL policy testing.">
+                            </div>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                    <div class="media-section videos">
+                        <h4 class="media-title">Videos</h4>
+                        <div class="carousel" data-carousel="lite3-gifs">
+                            <button class="carousel-btn carousel-btn-left" aria-label="Previous media">‹</button>
+                            <div class="carousel-container">
+                                <img src="assets/lite3/gifs/deep_robotics_sim_joystick.gif" alt="Lite3 simulation joystick teleoperation" class="carousel-img active" loading="lazy" data-caption="Lite3 simulation joystick teleoperation trials.">
+                                <img src="assets/lite3/gifs/quad_deep_robotics_real_joystick.gif" alt="Lite3 real-world joystick teleoperation" class="carousel-img" loading="lazy" data-caption="Real-world joystick control session on Lite3.">
+                                <img src="assets/lite3/gifs/Lite3Getup_rollout.gif" alt="Lite3 get-up rollout from prone position" class="carousel-img" loading="lazy" data-caption="Policy rollout: Lite3 autonomously recovers from a fall.">
+                            </div>
+                            <button class="carousel-btn carousel-btn-right" aria-label="Next media">›</button>
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-caption"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source Tools -->
+        <section class="tools-section">
+            <h2 class="section-title"><span class="gold-text">Open Source</span> Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 class="tool-name">CadQuery</h3>
+                    <p class="tool-description">Parametric 3D modeling through Python scripting</p>
+                    <a href="https://cadquery.readthedocs.io/en/latest/" target="_blank" rel="noopener" class="tool-link">Documentation →</a>
+                </div>
+                <div class="tool-card">
+                    <h3 class="tool-name">MuJoCo Playground</h3>
+                    <p class="tool-description">Physics simulation and RL policy training</p>
+                    <a href="https://playground.mujoco.org/" target="_blank" rel="noopener" class="tool-link">Playground →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline-section">
+            <h2 class="section-title">Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">System Identification</h3>
+                        <p class="timeline-date">December 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Quadruped Redesign and 3D Reprint</h3>
+                        <p class="timeline-date">November 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Rumi Policy Training</h3>
+                        <p class="timeline-date">October 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Leg Designing and Sim2Real</h3>
+                        <p class="timeline-date">October 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Lite3 Policy Training</h3>
+                        <p class="timeline-date">September 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Final CAD Design</h3>
+                        <p class="timeline-date">August 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">CAD Design - Earliest Prototype</h3>
+                        <p class="timeline-date">August 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Project Inception</h3>
+                        <p class="timeline-date">July 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 lsquarelabs</p>
+        <div class="social-links">
+            <a href="https://x.com/lsquarelabs" target="_blank" rel="noopener" aria-label="X (Twitter)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/lsquarelabs" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+            <a href="https://youtube.com/@lsquarelabs" target="_blank" rel="noopener" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+            <a href="https://linkedin.com/company/lsquarelabs" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
