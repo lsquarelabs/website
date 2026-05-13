@@ -448,3 +448,53 @@ body {
         height: 16px;
     }
 }
+
+.sim-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vw;
+    width: fit-content;
+    margin: 0 auto 4vh;
+    padding: 1.6vh 2.4vw;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.16), rgba(255, 215, 0, 0.08));
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 999px;
+    color: var(--color-white);
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sim-cta:hover {
+    border-color: rgba(255, 215, 0, 0.8);
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.24), rgba(255, 215, 0, 0.12));
+    transform: translateY(-1px);
+}
+
+.sim-cta-badge {
+    background: rgba(255, 215, 0, 0.9);
+    color: var(--color-black);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.sim-cta-arrow {
+    transition: transform 0.3s ease;
+}
+
+.sim-cta:hover .sim-cta-arrow {
+    transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+    .sim-cta {
+        gap: 2vw;
+        padding: 1.4vh 4vw;
+        font-size: 0.8rem;
+    }
+}
