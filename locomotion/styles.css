@@ -275,11 +275,12 @@ body {
 
 /* Project Navigation */
 .project-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2vh 1.5vw;
     width: 100%;
-    max-width: 450px;
+    max-width: 500px;
 }
 
 .project-nav-card {
@@ -296,19 +297,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.8vh;
+    align-self: stretch;
+    justify-content: center;
 }
 
-.project-nav-card::after {
-    content: '→';
-    position: absolute;
-    right: 2.5vw;
-    top: 50%;
-    transform: translateY(-50%) translateX(-10px);
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    color: gold;
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 
 .project-nav-card:hover {
     background: rgba(248, 248, 248, 0.08);
@@ -317,10 +310,7 @@ body {
     box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
 }
 
-.project-nav-card:hover::after {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-}
+
 
 .project-nav-card h3 {
     font-size: clamp(1.4rem, 2.2vw, 1.7rem);
